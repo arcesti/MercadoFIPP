@@ -38,4 +38,21 @@ public class UsuarioRestController {
         return ResponseEntity.badRequest().body(new Erro("Erro ao criar usuário!"));
     }
 
+    @PutMapping()
+    public ResponseEntity<Object> alterar(@RequestBody Usuario usuario) {
+        Usuario usuarioIns = usuarioService.save(usuario);
+        if(usuarioIns != null) {
+            return ResponseEntity.ok(usuarioIns);
+        }
+        return ResponseEntity.badRequest().body(new Erro("erro ao alterar usuário"));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletar(@PathVariable Long id) {
+        if(usuarioService.delete(id)) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.badRequest().body(new Erro("erro ao deletar usuário"));
+    }
+
 }

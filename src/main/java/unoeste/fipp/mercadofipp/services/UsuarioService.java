@@ -28,5 +28,13 @@ public class UsuarioService {
         }
     }
 
+    public boolean delete(Long id) {
+        try {
+            usuarioRepository.deleteById(id);
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
+    }
 
 }
